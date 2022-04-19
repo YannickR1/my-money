@@ -8,10 +8,11 @@ import styles from './Home.module.css'
 import TransactionForm from './TransactionForm'
 import TransactionList from './TransactionList'
 
-
 export default function Home() {
   const { user } = useAuthContext()
-  const { documents, error } = useCollection('transactions')
+  const { documents, error } = useCollection(
+    'transactions', ["uid", "==", user.uid]
+  )
 
   return (
     <div className={styles.container}>
